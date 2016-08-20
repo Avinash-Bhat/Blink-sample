@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Blink</string>
+    <string name="name">Name</string>
+    <string name="full_name">Full name</string>
+    <string name="employee_number">Employee Number</string>
+    <string name="sts">STS</string>
+    <string name="scan">Scan Card</string>
 </resources>
