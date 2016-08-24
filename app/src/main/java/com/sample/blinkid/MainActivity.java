@@ -6,7 +6,13 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import timber.log.Timber;
+
 public class MainActivity extends AppCompatActivity {
+
+    static {
+        Timber.plant(new Timber.DebugTree());
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
