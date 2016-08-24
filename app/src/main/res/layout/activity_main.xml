@@ -40,6 +40,7 @@
             android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/lbl_full_name"
             android:layout_toRightOf="@+id/lbl_full_name"
+            android:text="@={scanner.fullName}"
             android:ems="10"
             android:hint="@string/full_name"
             android:inputType="textPersonName"
