@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.widget.Toast;
 
 import java.util.Arrays;
 
@@ -70,12 +71,17 @@ public class MainViewModel {
                         for (int i = 0; i < recognitionResults.length; i++) {
                             BaseRecognitionResult result = recognitionResults[i];
                             Timber.v("result[%d]: %s", i, result);
-                            if (result instanceof BlinkOCRRecognitionResult) {
-                                BlinkOCRRecognitionResult blinkResult
-                                        = (BlinkOCRRecognitionResult) result;
-                                String name = blinkResult.getParsedResult(ID_NAME, ID_NAME);
-                                Timber.v("parsed result: %s", name);
-                                fullName.set(name);
+                            if (result.isValid() && !result.isEmpty()) {
+                                if (result instanceof BlinkOCRRecognitionResult) {
+                                    BlinkOCRRecognitionResult blinkResult
+                                            = (BlinkOCRRecognitionResult) result;
+                                    String name = blinkResult.getParsedResult(ID_NAME, ID_NAME);
+                                    Timber.v("parsed result: %s", name);
+                                    fullName.set(name);
+                                }
+                            } else {
+                                Toast.makeText(activity, "Couldnt recognize the details",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
