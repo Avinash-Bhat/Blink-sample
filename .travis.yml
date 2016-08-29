@@ -1,32 +1,32 @@
 language: android
 jdk:
-  - oraclejdk8
+- oraclejdk8
 android:
   components:
-    - platform-tools
-    - tools
-    - build-tools-24.0.1
-    - android-24
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
-    - extra-android-support
-    - addon-google_apis-google-24
+  - platform-tools
+  - tools
+  - build-tools-24.0.1
+  - android-24
+  - extra-google-google_play_services
+  - extra-google-m2repository
+  - extra-android-m2repository
+  - extra-android-support
+  - addon-google_apis-google-24
 licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
+- android-sdk-preview-license-.+
+- android-sdk-license-.+
+- google-gdk-license-.+
 deploy:
   skip_cleanup: true
   provider: releases
   api_key:
     secure: BCNhF3hjfQOv/ni6SiE4S7uf+0bh1RU4K95jb9PwrzRsSSvWSDfYrXQVblPhuVeHzKK4bpiqSUw+1R44lfDHf5YOE4Q+bnq7asDS5BlkZ4TfxI5PP+SJKQZgSRyCfJbzd/8BQQJ5cbImOddF7jwduT392URyqCSDGpM3dMFZwiC8Faky7Ayra/6q37SvZPIkB+tfUDDAXnx0PVBYy/tvaL+VYdDj9wuYuVC5i//PJ6pwox0ByOJ+L4ier80IruRbDofcNT+AIrNGg7ERfVu+QUL1S6oqSdNu0xv6upkfJwhP+2cc/I1IiThbeBRdspMJmTI9WkshMVnenHhRe3ZxguZcZJNfAOgQ2vdeljeDkzILIwOCMbzO1hcj21h+MxA2NR5Mcqa3DrgsHokW78s0XqCQIKaOmme0wA4QHAtltpT1xkpX6+ekqt5P1THkdxOs4myD6w6qpcs2MN7jQsQSEfgOqitc7dO349aNuw4gL0Ddqa3xueKaAtm9c/C994wlxXD+aHuarAc+uxKzubzuobhmhRnTyDyt1er2qM+cjkFPafYeXSCe0OLwm79R4CGECZJR5Ua1rFEbIbKCquRXa6LVpJS0CO+E2K/JXiCsQADJvk/LJblxNZKye5S5SfeD6jpHn23yi+K8bekzMGN1aPpEY7w6Jk2v8l+qPc6dqiw=
-  file: 'app/build/outputs/apk/app-debug.apk'
+  file: app/build/outputs/apk/app-debug.apk
   on:
     tags: true
 before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
