@@ -55,15 +55,15 @@ class Recognizers {
         Rectangle rectangle;
         // 6d: the ID is of 84mm height and 54mm width
         // the name is at top: 53mm, bottom: 58mm, left: 4, right: 52mm
-        rectangle = getRectangle(3, 52, 53, 58, 54, 84);
+//        rectangle = getRectangle(3, 52, 53, 58, 54, 84);
 
         // DL: the ID is of 54mm height and 89mm width
         // the name is at top: 18mm, bottom: 20.5mm, left: 39.5mm, right: 85mm
 //        rectangle = getRectangle(39.5f, 85, 54, 58, 89f, 54f);
 
-        // test ID: the ID is of 81mm height and 59mm width
-        // the name is at top: 52mm, bottom: 59mm, left: 4mm, right: 55mm
-//        rectangle = getRectangle(4, 55, 52, 59, 54, 81);
+        // visiting ID: the ID is of 41mm height and 89mm width
+        // the name is at top: 3mm, bottom: 7mm, left: 31mm, right: 75mm
+        rectangle = getRectangle(7, 75, 3, 7, 89, 41);
 
         return new DecodingInfo(rectangle, getDewrapedHeight(rectangle.getHeight()), ID_NAME);
     }
