@@ -111,9 +111,6 @@ local.properties
 # Mongo Explorer plugin:
 #.idea/mongoSettings.xml
 
-# But don't ignore the code style
-!.idea/codeStyleSettings.xml
-
 ## File-based project format:
 *.ipr
 *.iws
