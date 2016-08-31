@@ -45,7 +45,7 @@ class Recognizers {
 
     @NonNull
     private DecodingInfo setupName(@NonNull TemplatingRecognizerSettings settings) {
-        RegexParserSettings nameParser = new RegexParserSettings("[A-Z]+");
+        RegexParserSettings nameParser = new RegexParserSettings("[A-Za-z ]+");
         BlinkOCREngineOptions options = nameParser.getOcrEngineOptions();
         options.addLowercaseCharsToWhitelist(OcrFont.OCR_FONT_ANY);
         options.addUppercaseCharsToWhitelist(OcrFont.OCR_FONT_ANY);
