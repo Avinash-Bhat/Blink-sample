@@ -18,7 +18,7 @@ class SixdeeIdClassifier implements DocumentClassifier {
 
     @Override
     public String classifyDocument(BlinkOCRRecognitionResult result) {
-        String parsedId = result.getParsedResult(ID_NAME);
+        String parsedId = result.getParsedResult(ID_NAME, ID_NAME);
         if (!TextUtils.isEmpty(parsedId)) {
             return ID_NAME;
         }
