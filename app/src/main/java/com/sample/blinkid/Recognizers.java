@@ -39,7 +39,6 @@ class Recognizers {
                 new DocumentDetectorSettings(new DocumentSpecification[]{idSpec}));
         settings.setDocumentClassifier(new SixdeeIdClassifier());
         settings.setParserDecodingInfos(decodingInfos, ID_NAME);
-        settings.setAllowFlippedRecognition(true);
         return settings;
     }
 
