@@ -33,6 +33,7 @@ class Recognizers {
         };
         DocumentSpecification idSpec = DocumentSpecification.createFromPreset(
                 DocumentSpecificationPreset.DOCUMENT_SPECIFICATION_PRESET_ID1_CARD);
+        idSpec.setAspectRatio(1.733);
         idSpec.setDecodingInfos(decodingInfos);
         settings.setDetectorSettings(
                 new DocumentDetectorSettings(new DocumentSpecification[]{idSpec}));
