@@ -2,6 +2,7 @@ package com.sample.blinkid;
 
 import com.microblink.activity.ScanActivity;
 import com.microblink.activity.ShowOcrResultMode;
+import com.microblink.metadata.MetadataSettings;
 import com.microblink.recognizers.BaseRecognitionResult;
 import com.microblink.recognizers.RecognitionResults;
 import com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult;
@@ -9,7 +10,9 @@ import com.microblink.recognizers.settings.RecognitionSettings;
 import com.microblink.recognizers.settings.RecognizerSettings;
 
 import android.content.Intent;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.widget.Toast;
@@ -20,6 +23,8 @@ import timber.log.Timber;
 
 import static android.app.Activity.RESULT_OK;
 import static com.microblink.activity.BaseScanActivity.EXTRAS_BEEP_RESOURCE;
+import static com.microblink.activity.BaseScanActivity.EXTRAS_IMAGE_LISTENER;
+import static com.microblink.activity.BaseScanActivity.EXTRAS_IMAGE_METADATA_SETTINGS;
 import static com.microblink.activity.BaseScanActivity.EXTRAS_RECOGNITION_RESULTS;
 import static com.microblink.activity.ScanActivity.EXTRAS_ALLOW_PINCH_TO_ZOOM;
 import static com.microblink.activity.ScanActivity.EXTRAS_LICENSE_KEY;
@@ -41,6 +46,10 @@ public class MainViewModel {
 
     public final ObservableField<String> fullName = new ObservableField<>();
 
+    public final ObservableField<Drawable> detectedImage = new ObservableField<>();
+
+    public final ObservableBoolean detectDewrappedOnly = new ObservableBoolean();
+
     public void scanID() {
         Intent intent = new Intent(activity, ScanActivity.class);
         RecognitionSettings settings = new RecognitionSettings();
@@ -55,8 +64,17 @@ public class MainViewModel {
         intent.putExtra(EXTRAS_SHOW_FOCUS_RECTANGLE, true);
         intent.putExtra(EXTRAS_ALLOW_PINCH_TO_ZOOM, true);
         intent.putExtra(EXTRAS_SHOW_OCR_RESULT_MODE, (Parcelable) ShowOcrResultMode.STATIC_CHARS);
+        MetadataSettings.ImageMetadataSettings ims = new MetadataSettings.ImageMetadataSettings();
+        if (detectDewrappedOnly.get()) {
+            ims.setDewarpedImageEnabled(true);
+        } else {
+            ims.setSuccessfulScanFrameEnabled(true);
+        }
+        intent.putExtra(EXTRAS_IMAGE_METADATA_SETTINGS, ims);
+        intent.putExtra(EXTRAS_IMAGE_LISTENER, new BroadcastingImageListener());
         intent.putExtra(EXTRAS_RECOGNITION_SETTINGS, settings);
         activity.startActivityForResult(intent, REQUEST_SCAN);
+        BlinkApplication.getApplication().setDetectedImage(null);
     }
 
     boolean onActivityResult(int requestCode, int resultCode, Intent data) {
