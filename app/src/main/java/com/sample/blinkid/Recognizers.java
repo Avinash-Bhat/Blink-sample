@@ -26,11 +26,19 @@ class Recognizers {
     private Recognizers() {
     }
 
-    BlinkOCRRecognizerSettings sixdeeId() {
+    BlinkOCRRecognizerSettings sixdeeId(boolean needDewrapped) {
         BlinkOCRRecognizerSettings settings = new BlinkOCRRecognizerSettings();
-        DecodingInfo[] decodingInfos = {
-                setupName(settings)
-        };
+        DecodingInfo[] decodingInfos;
+        if (needDewrapped) {
+            decodingInfos = new DecodingInfo[]{
+                    setupName(settings)
+                    , new DecodingInfo(new Rectangle(0, 0, 1, 1), 350, "noParsers")
+            };
+        } else {
+            decodingInfos = new DecodingInfo[]{
+                    setupName(settings)
+            };
+        }
         DocumentSpecification idSpec = DocumentSpecification.createFromPreset(
                 DocumentSpecificationPreset.DOCUMENT_SPECIFICATION_PRESET_ID1_CARD);
         idSpec.setAspectRatio(1.733);

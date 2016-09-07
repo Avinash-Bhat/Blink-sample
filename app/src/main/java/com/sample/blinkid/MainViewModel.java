@@ -53,8 +53,9 @@ public class MainViewModel {
     public void scanID() {
         Intent intent = new Intent(activity, ScanActivity.class);
         RecognitionSettings settings = new RecognitionSettings();
+        boolean onlyDewrapped = detectDewrappedOnly.get();
         settings.setRecognizerSettingsArray(new RecognizerSettings[]{
-                Recognizers.getInstance().sixdeeId()
+                Recognizers.getInstance().sixdeeId(onlyDewrapped)
         });
         settings.setNumMsBeforeTimeout(2000);
         intent.putExtra(EXTRAS_BEEP_RESOURCE, R.raw.beep);
@@ -65,13 +66,13 @@ public class MainViewModel {
         intent.putExtra(EXTRAS_ALLOW_PINCH_TO_ZOOM, true);
         intent.putExtra(EXTRAS_SHOW_OCR_RESULT_MODE, (Parcelable) ShowOcrResultMode.STATIC_CHARS);
         MetadataSettings.ImageMetadataSettings ims = new MetadataSettings.ImageMetadataSettings();
-        if (detectDewrappedOnly.get()) {
+        if (onlyDewrapped) {
             ims.setDewarpedImageEnabled(true);
         } else {
             ims.setSuccessfulScanFrameEnabled(true);
         }
         intent.putExtra(EXTRAS_IMAGE_METADATA_SETTINGS, ims);
-        intent.putExtra(EXTRAS_IMAGE_LISTENER, new BroadcastingImageListener());
+        intent.putExtra(EXTRAS_IMAGE_LISTENER, new BroadcastingImageListener(onlyDewrapped));
         intent.putExtra(EXTRAS_RECOGNITION_SETTINGS, settings);
         activity.startActivityForResult(intent, REQUEST_SCAN);
         BlinkApplication.getApplication().setDetectedImage(null);
