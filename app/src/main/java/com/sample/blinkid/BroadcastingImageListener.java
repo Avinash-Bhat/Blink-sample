@@ -9,7 +9,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.content.LocalBroadcastManager;
 
-import static com.microblink.image.ImageType.DEBUG_DEWARPED;
+import static com.microblink.image.ImageType.DEWARPED;
 import static com.microblink.image.ImageType.SUCCESSFUL_SCAN;
 
 class BroadcastingImageListener implements ImageListener {
@@ -28,7 +28,7 @@ class BroadcastingImageListener implements ImageListener {
 
     @Override
     public void onImageAvailable(Image image) {
-        ImageType imageType = onlyDewraped ? DEBUG_DEWARPED : SUCCESSFUL_SCAN;
+        ImageType imageType = onlyDewraped ? DEWARPED : SUCCESSFUL_SCAN;
         if (image.getImageType() == imageType) {
             sendBroadcast(image.clone());
         }
