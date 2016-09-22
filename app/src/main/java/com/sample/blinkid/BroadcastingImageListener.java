@@ -18,12 +18,16 @@ class BroadcastingImageListener implements ImageListener {
 
     private final boolean onlyDewraped;
 
-    BroadcastingImageListener(boolean onlyDewraped) {
+    private final int bitmapKey;
+
+    BroadcastingImageListener(boolean onlyDewraped, int bitmapKey) {
         this.onlyDewraped = onlyDewraped;
+        this.bitmapKey = bitmapKey;
     }
 
     private BroadcastingImageListener(Parcel parcel) {
         onlyDewraped = (parcel.readInt() == 1);
+        bitmapKey = parcel.readInt();
     }
 
     @Override
@@ -37,7 +41,7 @@ class BroadcastingImageListener implements ImageListener {
     private void sendBroadcast(Image image) {
         //todo do this on bg thread
         try {
-            application.setDetectedImage(image.convertToBitmap());
+            application.setDetectedImage(bitmapKey, image.convertToBitmap());
             Intent intent = new Intent(BlinkApplication.ACTION_IMAGE_DETECTED);
             LocalBroadcastManager.getInstance(application).sendBroadcast(intent);
         } finally {
@@ -53,6 +57,7 @@ class BroadcastingImageListener implements ImageListener {
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeInt(onlyDewraped ? 1 : 0);
+        parcel.writeInt(bitmapKey);
     }
 
     public static final Parcelable.Creator<BroadcastingImageListener> CREATOR

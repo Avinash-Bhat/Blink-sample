@@ -6,4 +6,7 @@
     <string name="sts">STS</string>
     <string name="scan">Scan Card</string>
     <string name="lbl_image_detection_type">Show detected portion only</string>
+    <string name="title_national_id">National ID</string>
+    <string name="title_passport">Passport</string>
+    <string name="title_driving_licence_card">DL (Card)</string>
 </resources>
