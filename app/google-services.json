@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "43795637235",
+    "firebase_url": "https://blink-sample.firebaseio.com",
+    "project_id": "blink-sample",
+    "storage_bucket": "blink-sample.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43795637235:android:2cf45661fcb09812",
+        "android_client_info": {
+          "package_name": "com.sample.blinkid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43795637235-72hvi5ouuofop6h14vi8asihfvnomdqj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sample.blinkid",
+            "certificate_hash": "E2CF9569B1D5A7F80B3727ECBC056BFC3D0D394F"
+          }
+        },
+        {
+          "client_id": "43795637235-e0maoekg47ps7cjn16s0lve2pvc19b06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJscZg2jzbQB6EUYnauax4XKqLqEMXI3E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "43795637235-e0maoekg47ps7cjn16s0lve2pvc19b06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
